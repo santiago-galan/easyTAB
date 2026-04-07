@@ -10,7 +10,8 @@ function createWindow(): void {
     height: 800,
     minWidth: 1024,
     minHeight: 640,
-    backgroundColor: "#0d0505",
+    backgroundColor: "#1e1b1b",
+    icon: path.join(__dirname, "../favicon.ico"),
     titleBarStyle: "hiddenInset",
     frame: true,
     webPreferences: {

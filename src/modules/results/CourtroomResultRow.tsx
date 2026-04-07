@@ -55,6 +55,9 @@ export default function CourtroomResultRow({
   const petTeam = teamById(teams, pairing.petitionerTeamId);
   const resTeam = teamById(teams, pairing.respondentTeamId);
 
+  // Row display uses team IDs for quick reference; modal uses school names
+  const petId = `#${pairing.petitionerTeamId}`;
+  const resId = `#${pairing.respondentTeamId}`;
   const petName = petTeam?.schoolName ?? `Team ${pairing.petitionerTeamId}`;
   const resName = resTeam?.schoolName ?? `Team ${pairing.respondentTeamId}`;
 
@@ -65,8 +68,8 @@ export default function CourtroomResultRow({
   const winnerLabel = (() => {
     if (!result || result.ballots.length === 0) return null;
     if (result.isTieMatch) return "Tied";
-    if (result.matchWinnerId === pairing.petitionerTeamId) return `${petName} wins`;
-    if (result.matchWinnerId === pairing.respondentTeamId) return `${resName} wins`;
+    if (result.matchWinnerId === pairing.petitionerTeamId) return `${petId} wins`;
+    if (result.matchWinnerId === pairing.respondentTeamId) return `${resId} wins`;
     return null;
   })();
 
@@ -95,10 +98,16 @@ export default function CourtroomResultRow({
           </p>
         </div>
 
-        <div className="flex-1 flex items-center gap-2 min-w-0">
-          <span className="text-sm text-accent font-medium truncate">{petName}</span>
-          <span className="text-muted text-xs flex-none">vs.</span>
-          <span className="text-sm text-subtle font-medium truncate">{resName}</span>
+        <div className="flex items-center gap-2 flex-none">
+          <span className="text-sm text-accent font-semibold tabular-nums">{petId}</span>
+          <span className="text-muted text-xs">v.</span>
+          <span className="text-sm text-subtle font-semibold tabular-nums">{resId}</span>
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <span className="text-xs text-muted truncate">
+            {petName} vs. {resName}
+          </span>
         </div>
 
         <div className="flex items-center gap-3 flex-none">

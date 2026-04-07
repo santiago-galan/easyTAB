@@ -23,26 +23,26 @@ function shuffle<T>(array: T[]): T[] {
 }
 
 /**
- * Generates Round 1 pairings via random draw with backtracking.
+ * Generates random pairings with backtracking.
  *
  * Guarantees:
  *  - No same-school pairings (hard constraint).
- *  - Forced repeats flagged on the pairing if unavoidable (no prior rounds
- *    exist for round 1, so this flag will never be set here).
- *  - Side balance applied via assignSides.
+ *  - No repeat matchups where avoidable (soft — flagged when forced).
+ *  - Side balance drawn from the full locked-round history via assignSides.
  */
 function generateRandomPairings(
   roundNumber: number,
   teams: Team[],
-  courtrooms: Courtroom[]
+  courtrooms: Courtroom[],
+  lockedRounds: GeneratedRound[]
 ): GeneratedRound {
   const shuffled = shuffle(teams);
-  const historyMap = computeSideHistory([]);
+  const historyMap = computeSideHistory(lockedRounds);
   const sortedCourtrooms = [...courtrooms].sort(
     (a, b) => a.sortOrder - b.sortOrder
   );
 
-  const { pairs, unmatched } = findMatching(shuffled, []);
+  const { pairs, unmatched } = findMatching(shuffled, lockedRounds);
 
   const pairings: Pairing[] = pairs.map((match, i) => {
     const sides = assignSides(match.teamAId, match.teamBId, historyMap);
@@ -89,7 +89,7 @@ export function generateRound(options: {
   }
 
   if (roundNumber === 1 || !useSwissPairing) {
-    return generateRandomPairings(roundNumber, teams, courtrooms);
+    return generateRandomPairings(roundNumber, teams, courtrooms, lockedRounds);
   }
 
   return generateSwissPairings(

@@ -5,20 +5,20 @@
 /* ── Dark theme (default) ───────────────────────────────────────────────── */
 :root,
 [data-theme="dark"] {
-  --surface-0: #0d0505;
-  --surface-1: #140808;
-  --surface-2: #1e0e0e;
-  --surface-3: #281414;
+  --surface-0: #1e1b1b;
+  --surface-1: #252222;
+  --surface-2: #2e2b2b;
+  --surface-3: #383434;
   --accent: #800000;
   --accent-hover: #9a0000;
   --accent-muted: #5c0000;
-  --border-color: #3d1a1a;
-  --muted: #8a6060;
-  --subtle: #c4a0a0;
+  --border-color: #4a3535;
+  --muted: #907070;
+  --subtle: #c8a8a8;
   --foreground: #f0e6e6;
-  --scrollbar-track: #140808;
-  --scrollbar-thumb: #3d1a1a;
-  --scrollbar-thumb-hover: #5c2a2a;
+  --scrollbar-track: #252222;
+  --scrollbar-thumb: #4a3535;
+  --scrollbar-thumb-hover: #633030;
 }
 
 /* ── Light theme ────────────────────────────────────────────────────────── */

@@ -1,12 +1,12 @@
 {
-  "name": "easytab",
+  "name": "phoenixtab",
   "version": "1.0.0",
   "description": "Local-First Moot Court Tabulation System",
   "main": "dist-electron/main.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "electron:dev": "concurrently \"vite\" \"wait-on tcp:5173 && electron .\"",
+    "electron:dev": "concurrently --kill-others \"vite\" \"wait-on tcp:5173 && electron .\"",
     "electron:build": "tsc && vite build && tsc -p tsconfig.electron.json",
     "dist": "npm run electron:build && node scripts/package.mjs",
     "dist:installer": "npm run electron:build && electron-builder",
@@ -35,8 +35,9 @@
     "wait-on": "^8.0.1"
   },
   "build": {
-    "appId": "com.easytab.mcts",
-    "productName": "easyTAB",
+    "appId": "com.phoenixtab.mcts",
+    "productName": "PhoenixTAB",
+    "icon": "favicon.ico",
     "asar": false,
     "directories": {
       "output": "release"

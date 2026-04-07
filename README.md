@@ -1,4 +1,4 @@
-# easyTAB
+# PhoenixTAB
 
 Local-first moot court tabulation system built to AMCA/NAMC standards.  
 All data is stored on your machine. No internet connection required after installation.
@@ -8,7 +8,7 @@ All data is stored on your machine. No internet connection required after instal
 ## Download & Install
 
 1. Go to the [**Releases**](../../releases/latest) page of this repository
-2. Download **easyTAB-Setup-x.x.x.exe**
+2. Download **PhoenixTAB-Setup-x.x.x.exe**
 3. Run the installer — no account, no internet, no configuration needed
 
 ---
@@ -54,6 +54,6 @@ GitHub Actions will automatically build the installer and attach it to a new Rel
 | # | Module | Status |
 |---|---|---|
 | 01 | Team Ingestion | Complete |
-| 02 | Pairing Engine | Pending |
-| 03 | Results Manager | Pending |
-| 04 | Tabulator | Pending |
+| 02 | Pairing Engine | Complete |
+| 03 | Results Manager | Complete |
+| 04 | Tabulator | Complete |

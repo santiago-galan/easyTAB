@@ -33,7 +33,7 @@ export default function Sidebar({
     <aside className="w-56 flex-none flex flex-col bg-surface-1 border-r border-border">
       <div className="px-4 py-5 border-b border-border">
         <span className="text-sm font-semibold tracking-widest text-accent uppercase">
-          easyTAB
+          PhoenixTAB
         </span>
         <p className="text-xs text-muted mt-0.5">Moot Court Tabulation</p>
       </div>

@@ -38,24 +38,31 @@ copyDir(path.join(root, "dist-electron"), path.join(stagingDir, "dist-electron")
 
 fs.writeFileSync(
   path.join(stagingDir, "package.json"),
-  JSON.stringify({ name: "easytab", version: "1.0.0", main: "dist-electron/main.js" }, null, 2)
+  JSON.stringify({ name: "phoenixtab", version: "1.0.0", main: "dist-electron/main.js" }, null, 2)
 );
+
+// Copy favicon for the packaged window icon
+const faviconSrc = path.join(root, "favicon.ico");
+if (fs.existsSync(faviconSrc)) {
+  fs.copyFileSync(faviconSrc, path.join(stagingDir, "favicon.ico"));
+}
 
 console.log("Running @electron/packager...");
 
 const cmd = [
   "npx electron-packager",
   `"${stagingDir}"`,
-  "easyTAB",
+  "PhoenixTAB",
   "--platform=win32",
   "--arch=x64",
   `--out="${releaseDir}"`,
   "--overwrite",
   "--electron-version=33.4.11",
+  `--icon="${faviconSrc}"`,
 ].join(" ");
 
 execSync(cmd, { stdio: "inherit", cwd: root });
 
 fs.rmSync(stagingDir, { recursive: true });
 
-console.log(`\nDone. Executable located at: ${path.join(releaseDir, "easyTAB-win32-x64", "easyTAB.exe")}`);
+console.log(`\nDone. Executable located at: ${path.join(releaseDir, "PhoenixTAB-win32-x64", "PhoenixTAB.exe")}`);

@@ -138,11 +138,16 @@ export interface CourtroomResult {
 
 export interface TeamStanding {
   teamId: number;
+  teamCode: string;
   schoolName: string;
+  /** Normalized ballots won: each courtroom contributes exactly 2 total. */
   ballotsWon: number;
+  /** Total normalized ballots available (rounds played × 2). */
   totalBallots: number;
   ballotWinRate: number;
+  /** Average normalized ballot-win rate of all opponents faced. */
   strengthOfSchedule: number;
+  /** Sum of (team raw score − opponent raw score) across all judges and rounds. */
   pointDifferential: number;
   seed: number | null;
 }
@@ -150,9 +155,12 @@ export interface TeamStanding {
 export interface OralistStanding {
   oralistName: string;
   teamId: number;
+  teamCode: string;
   schoolName: string;
+  totalPoints: number;
+  /** Number of (round × judge) appearances. */
+  appearances: number;
   averageScore: number;
-  roundsCompeted: number;
 }
 
 // ── Electron IPC bridge (window.electronAPI) ──────────────────────────────────
