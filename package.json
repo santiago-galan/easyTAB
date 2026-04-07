@@ -1,6 +1,6 @@
 {
   "name": "phoenixtab",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Local-First Moot Court Tabulation System",
   "main": "dist-electron/main.js",
   "scripts": {
