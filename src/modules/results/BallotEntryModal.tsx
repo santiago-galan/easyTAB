@@ -5,6 +5,7 @@ import {
   buildOralistScore,
   computeJudgeTotals,
   resolveBallotWinner,
+  resolveMatchWinner,
 } from "./lib/scoreCalculator";
 import OralistScoreForm from "./OralistScoreForm";
 
@@ -88,7 +89,7 @@ export default function BallotEntryModal({
     }));
   };
 
-  const oratistNames: Record<OralistKey, string> = {
+  const oralistNames: Record<OralistKey, string> = {
     petitionerOralist1: petitionerOrator1,
     petitionerOralist2: petitionerOrator2,
     respondentOralist1: respondentOrator1,
@@ -96,10 +97,10 @@ export default function BallotEntryModal({
   };
 
   const buildBallot = (judgeIndex: number, d: JudgeDraft): JudgeBallot => {
-    const p1 = buildOralistScore({ oralistName: oratistNames.petitionerOralist1, criteria: d.petitionerOralist1 }, ballotType);
-    const p2 = buildOralistScore({ oralistName: oratistNames.petitionerOralist2, criteria: d.petitionerOralist2 }, ballotType);
-    const r1 = buildOralistScore({ oralistName: oratistNames.respondentOralist1, criteria: d.respondentOralist1 }, ballotType);
-    const r2 = buildOralistScore({ oralistName: oratistNames.respondentOralist2, criteria: d.respondentOralist2 }, ballotType);
+    const p1 = buildOralistScore({ oralistName: oralistNames.petitionerOralist1, criteria: d.petitionerOralist1 }, ballotType);
+    const p2 = buildOralistScore({ oralistName: oralistNames.petitionerOralist2, criteria: d.petitionerOralist2 }, ballotType);
+    const r1 = buildOralistScore({ oralistName: oralistNames.respondentOralist1, criteria: d.respondentOralist1 }, ballotType);
+    const r2 = buildOralistScore({ oralistName: oralistNames.respondentOralist2, criteria: d.respondentOralist2 }, ballotType);
     const base: JudgeBallot = {
       judgeIndex,
       petitionerOralist1: p1,
@@ -132,30 +133,10 @@ export default function BallotEntryModal({
     }
     const isComplete = ballots.length === judgeCount;
 
-    // Compute match winner from the saved ballots
-    let petScore = 0;
-    let resScore = 0;
-    for (const b of ballots) {
-      if (b.isTie) { petScore += 0.5; resScore += 0.5; }
-      else if (b.winnerTeamId === result.petitionerTeamId) petScore += 1;
-      else resScore += 1;
-    }
-    let matchWinnerId: number | null = null;
-    let isTieMatch = false;
-    if (ballots.length > 0) {
-      if (petScore > resScore) matchWinnerId = result.petitionerTeamId;
-      else if (resScore > petScore) matchWinnerId = result.respondentTeamId;
-      else isTieMatch = true;
-    }
+    const partial: CourtroomResult = { ...result, judgeCount, ballots, isComplete, matchWinnerId: null, isTieMatch: false };
+    const { matchWinnerId, isTieMatch } = resolveMatchWinner(partial);
 
-    onSave({
-      ...result,
-      judgeCount,
-      ballots,
-      isComplete,
-      matchWinnerId,
-      isTieMatch,
-    });
+    onSave({ ...partial, matchWinnerId, isTieMatch });
   };
 
   const hasAnyTie = currentBallot.isTie;

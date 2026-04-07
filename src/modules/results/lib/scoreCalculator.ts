@@ -1,3 +1,9 @@
+/**
+ * Score computation and validation for ballot entry.
+ * Handles oralist totals, judge ballot winners, match-level resolution
+ * (majority ballot wins with 0.5-ballot tie handling), and score flagging.
+ */
+
 import type {
   BallotCriterion,
   BallotType,
@@ -17,10 +23,6 @@ export interface FlaggedCell {
   side: "petitioner" | "respondent";
   oralistSlot: 1 | 2;
   criterionId: string;
-}
-
-export function computeOralistTotal(score: OralistScore): number {
-  return Object.values(score.criteria).reduce((s, v) => s + v, 0);
 }
 
 export function buildOralistScore(

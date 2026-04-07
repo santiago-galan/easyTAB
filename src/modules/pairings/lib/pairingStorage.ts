@@ -1,3 +1,5 @@
+/** Persistence layer for courtrooms and generated pairing rounds. */
+
 import type { Courtroom, GeneratedRound } from "@/types";
 import { storageGet, storageSet } from "@/lib/storage";
 

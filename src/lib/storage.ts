@@ -1,11 +1,16 @@
 /**
  * Generic LocalStorage CRUD layer.
+ *
  * All keys are namespaced by tournamentId to ensure full data isolation
  * between tournaments stored in the same browser/Electron session.
+ *
+ * Key format: phoenixtab:<tournamentId>:<namespace>
  */
 
+const KEY_PREFIX = "phoenixtab";
+
 function buildKey(tournamentId: string, namespace: string): string {
-  return `easytab:${tournamentId}:${namespace}`;
+  return `${KEY_PREFIX}:${tournamentId}:${namespace}`;
 }
 
 export function storageGet<T>(tournamentId: string, namespace: string): T | null {
@@ -33,7 +38,7 @@ export function storageDelete(tournamentId: string, namespace: string): void {
  * Removes all keys belonging to a tournament, effectively deleting all its data.
  */
 export function storagePurgeTournament(tournamentId: string): void {
-  const prefix = `easytab:${tournamentId}:`;
+  const prefix = `${KEY_PREFIX}:${tournamentId}:`;
   const keysToRemove: string[] = [];
 
   for (let i = 0; i < localStorage.length; i++) {
@@ -52,7 +57,7 @@ export function storageListTournamentIds(): string[] {
   const ids: string[] = [];
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key?.startsWith("easytab:") && key.endsWith(":meta")) {
+    if (key?.startsWith(`${KEY_PREFIX}:`) && key.endsWith(":meta")) {
       const parts = key.split(":");
       if (parts.length === 3) ids.push(parts[1]);
     }

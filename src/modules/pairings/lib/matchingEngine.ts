@@ -1,3 +1,9 @@
+/**
+ * Backtracking matching engine for pairing teams under constraints.
+ * Uses Minimum Remaining Values (MRV) heuristic for efficient search
+ * across typical moot court tournament sizes (8-64 teams).
+ */
+
 import type { GeneratedRound, Team } from "@/types";
 
 export interface MatchedPair {

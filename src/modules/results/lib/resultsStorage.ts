@@ -1,3 +1,5 @@
+/** Persistence layer for per-courtroom ballot results. */
+
 import type { CourtroomResult } from "@/types";
 import { storageGet, storageSet } from "@/lib/storage";
 

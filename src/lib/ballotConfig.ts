@@ -1,3 +1,8 @@
+/**
+ * Scoring criteria for AMCA and NAMC ballot standards.
+ * Defines per-criterion score ranges, max totals, and flagging thresholds.
+ */
+
 import type { BallotCriterion, BallotType } from "@/types";
 
 const AMCA_CRITERIA: BallotCriterion[] = [

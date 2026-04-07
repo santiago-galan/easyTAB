@@ -1,3 +1,5 @@
+/** CRUD operations for Tournament metadata stored in LocalStorage. */
+
 import type { Tournament } from "@/types";
 import {
   storageGet,

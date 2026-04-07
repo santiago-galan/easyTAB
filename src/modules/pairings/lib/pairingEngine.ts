@@ -1,3 +1,9 @@
+/**
+ * Pairing engine entry point.
+ * Selects between random and Swiss strategies, applies side-balance
+ * assignment, and exposes manual swap / conflict resolution helpers.
+ */
+
 import type {
   Team,
   Pairing,

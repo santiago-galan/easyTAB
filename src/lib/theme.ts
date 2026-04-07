@@ -1,6 +1,8 @@
+/** Theme persistence and toggling for the dark/light mode switch. */
+
 export type Theme = "dark" | "light";
 
-const STORAGE_KEY = "easytab:theme";
+const STORAGE_KEY = "phoenixtab:theme";
 
 export function getStoredTheme(): Theme {
   return (localStorage.getItem(STORAGE_KEY) as Theme) ?? "dark";

@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import type { Team, TeamInput, CSVImportRow } from "@/types";
 import { useTournament } from "@/context/TournamentContext";
 import { getTeams, addTeam, updateTeam, deleteTeam, importTeams } from "./lib/teamStorage";
@@ -20,6 +20,10 @@ export default function TeamsPage(): JSX.Element {
   const refreshTeams = useCallback(() => {
     if (activeTournament) setTeams(getTeams(activeTournament.id));
   }, [activeTournament]);
+
+  useEffect(() => {
+    refreshTeams();
+  }, [activeTournament?.id]);
 
   const handleAdd = (input: TeamInput) => {
     if (!activeTournament) return;

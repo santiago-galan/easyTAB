@@ -1,3 +1,8 @@
+/**
+ * CSV parsing, serialization, and file I/O.
+ * Uses PapaParse for format handling and Electron's native dialog when available.
+ */
+
 import Papa from "papaparse";
 
 /**

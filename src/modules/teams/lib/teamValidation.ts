@@ -1,3 +1,8 @@
+/**
+ * Validation logic for team registration forms and CSV imports.
+ * Enforces required fields, unique oralist names, and valid email format.
+ */
+
 import type {
   TeamInput,
   TeamValidationError,
@@ -17,7 +22,7 @@ function buildResult(errors: TeamValidationError[]): TeamValidationResult {
  * Checks that no oralist name appears on any other team in the tournament.
  * Skips the team with `excludeTeamId` to allow editing without self-collision.
  */
-function findOratistCollisions(
+function findOralistCollisions(
   input: TeamInput,
   existingTeams: Team[],
   excludeTeamId?: number
@@ -102,7 +107,7 @@ export function validateTeamForm(
 
   if (errors.length > 0) return buildResult(errors);
 
-  const collisions = findOratistCollisions(input, existingTeams, excludeTeamId);
+  const collisions = findOralistCollisions(input, existingTeams, excludeTeamId);
   errors.push(...collisions);
 
   return buildResult(errors);

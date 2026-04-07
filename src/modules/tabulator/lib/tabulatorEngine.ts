@@ -1,3 +1,11 @@
+/**
+ * Tabulation engine: computes team standings and oralist rankings.
+ *
+ * All ballots are normalized to exactly 2 per courtroom regardless of
+ * actual judge count, scaled proportionally by votes won. Rankings use
+ * AMCA/NAMC tiebreaker ordering: ballot wins > SOS > point differential.
+ */
+
 import type {
   CourtroomResult,
   OralistStanding,

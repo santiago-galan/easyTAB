@@ -1,3 +1,9 @@
+/**
+ * Swiss (power) pairing strategy.
+ * Ranks teams by ballot wins and SOS, then delegates to the backtracking
+ * matching engine to pair adjacent-ranked teams under constraints.
+ */
+
 import type {
   Team,
   Pairing,

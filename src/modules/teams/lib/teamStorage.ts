@@ -1,3 +1,5 @@
+/** CRUD and bulk-import operations for teams within a tournament. */
+
 import type { Team, TeamInput, CSVImportRow } from "@/types";
 import { storageGet, storageSet } from "@/lib/storage";
 

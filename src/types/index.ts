@@ -1,3 +1,8 @@
+/**
+ * Shared TypeScript interfaces for all PhoenixTAB modules.
+ * Any type used across module boundaries is defined here.
+ */
+
 // ── Tournament ────────────────────────────────────────────────────────────────
 
 export type BallotType = "AMCA" | "NAMC";
